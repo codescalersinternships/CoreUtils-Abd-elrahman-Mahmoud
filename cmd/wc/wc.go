@@ -63,7 +63,6 @@ func main() {
 		if err != nil {
 			fmt.Println("Error trying to open file!")
 			panic(err)
-			os.Exit(0)
 		}
 
 		fileScanner := bufio.NewScanner(file)
@@ -80,7 +79,6 @@ func main() {
 		if err != nil {
 			fmt.Println("Error trying to open file!")
 			panic(err)
-			os.Exit(0)
 		}
 
 		fileScanner := bufio.NewScanner(file)
