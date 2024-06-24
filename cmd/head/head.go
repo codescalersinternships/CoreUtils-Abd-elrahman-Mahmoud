@@ -9,35 +9,38 @@ import (
 )
 
 func main() {
-	var NumberofLinesFlag bool
-	var NumberofLines int
+	var numberofLinesFlag bool
+	var numberofLines int
 	var err error
 	var fileName string
 	var file *os.File
 
-    flag.BoolVar(&NumberofLinesFlag, "n", false, "Number of Lines")
+    flag.BoolVar(&numberofLinesFlag, "n", false, "Number of Lines")
 
 	flag.Parse()
 
 	args := flag.Args()
-	if NumberofLinesFlag && len(args) == 2 {
-		NumberofLines, err = strconv.Atoi(args[0])
+	if numberofLinesFlag && len(args) == 2 {
+		numberofLines, err = strconv.Atoi(args[0])
 		if err != nil {
 			fmt.Println("Error trying to convert string to integer!")
 		    panic(err)
+			os.Exit(0)
 		}
 		fileName = args[1]
 	} else if len(args) == 1 {
-		NumberofLines = 10
+		numberofLines = 10
 		fileName = args[0]
 	} else {
 		fmt.Println("Wrong Number of Arguments")
+		os.Exit(0)
 	}
 
 	file, err = os.Open(fileName)
 	if err != nil {
 		fmt.Println("Error trying to open file!")
 		panic(err)
+		os.Exit(0)
 	}
 
 	fileScanner := bufio.NewScanner(file)
@@ -45,11 +48,11 @@ func main() {
 	fileScanner.Split(bufio.ScanLines)
  
 	for fileScanner.Scan() {
-		if NumberofLines == 0 {
+		if numberofLines == 0 {
 			break
 		}
 		fmt.Printf("%s\n\n",fileScanner.Text())
-		NumberofLines--
+		numberofLines--
 	}
 
 	file.Close()

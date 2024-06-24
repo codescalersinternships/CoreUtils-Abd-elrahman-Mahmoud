@@ -34,7 +34,13 @@ func main() {
 	}
 
 	args := flag.Args()
-	fileName = args[0]
+	if len(args) == 0{
+		fmt.Println("Wrong Number of Arguments")
+		os.Exit(0)
+	} else {
+		fileName = args[0]
+	}
+
 
 	if numberofLinesFlag {
 		file, err = os.Open(fileName)
@@ -57,6 +63,7 @@ func main() {
 		if err != nil {
 			fmt.Println("Error trying to open file!")
 			panic(err)
+			os.Exit(0)
 		}
 
 		fileScanner := bufio.NewScanner(file)
@@ -73,6 +80,7 @@ func main() {
 		if err != nil {
 			fmt.Println("Error trying to open file!")
 			panic(err)
+			os.Exit(0)
 		}
 
 		fileScanner := bufio.NewScanner(file)

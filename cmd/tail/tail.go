@@ -29,6 +29,7 @@ func main() {
 		if err != nil {
 			fmt.Println("Error trying to convert string to integer!")
 		    panic(err)
+			os.Exit(0)
 		}
 		fileName = args[1]
 	} else if len(args) == 1 {
@@ -36,12 +37,14 @@ func main() {
 		fileName = args[0]
 	} else {
 		fmt.Println("Wrong Number of Arguments")
+		os.Exit(0)
 	}
 
 	file, err = os.Open(fileName)
 	if err != nil {
 		fmt.Println("Error trying to open file!")
 		panic(err)
+		os.Exit(0)
 	}
 
 	fileScanner := bufio.NewScanner(file)
@@ -57,6 +60,7 @@ func main() {
 	if err != nil {
 		fmt.Println("Error trying to open file!")
 		panic(err)
+		os.Exit(0)
 	}
 	
 	linetoStartPrinting = totalNumberofLines - numberofLines
