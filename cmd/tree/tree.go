@@ -8,15 +8,16 @@ import (
 	"path/filepath"
 )
 
+var numberofDirectories int = 1
+var numberofFiles int = 0
+
 func printDirectory(entry string,level int) {
 	fmt.Printf("|_%s\n", entry)
-	numberofDirectories := 1
-	numberofFiles := 0
-	printDirectoryRecursion(entry, level, &numberofDirectories, &numberofFiles,"    ")
+	printDirectoryRecursion(entry, level,"    ")
 	fmt.Printf("%d directories, %d files\n",numberofDirectories, numberofFiles)
 }
 
-func printDirectoryRecursion(entryName string,level int, numberofFiles *int, numberofDirectories *int, space string ) {
+func printDirectoryRecursion(entryName string,level int, space string ) {
     if level == 0 {          //first exit condition
         return
     }
@@ -34,11 +35,11 @@ func printDirectoryRecursion(entryName string,level int, numberofFiles *int, num
 
 	for _, entry := range c {
 		if entry.IsDir() {
-			*numberofDirectories ++
+			numberofDirectories ++
 			fmt.Printf("%s|_%s\n", space,entry.Name())
-			printDirectoryRecursion(filepath.Join(entryName, entry.Name()), level, numberofDirectories, numberofFiles, space + "    ")
+			printDirectoryRecursion(filepath.Join(entryName, entry.Name()), level, space + "    ")
 		} else {
-			*numberofFiles++
+			numberofFiles++
 			fmt.Printf("%s|_%s\n", space,entry.Name())
 		}
     }
