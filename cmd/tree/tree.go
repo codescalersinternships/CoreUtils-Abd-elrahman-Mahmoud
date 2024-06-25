@@ -67,8 +67,7 @@ func main() {
 		treeLevel = -1
 		directoryName = args[0]
 	} else {
-		fmt.Println("Wrong Number of Arguments")
-		os.Exit(0)
+		log.fatal("Wrong Number of Arguments")
 	}
 
 	printDirectory(directoryName,treeLevel)

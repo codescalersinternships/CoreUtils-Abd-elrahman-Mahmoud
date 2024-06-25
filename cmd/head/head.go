@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"os"
 	"bufio"
+	"log"
 )
 
 func main() {
@@ -31,8 +32,7 @@ func main() {
 		numberofLines = 10
 		fileName = args[0]
 	} else {
-		fmt.Println("Wrong Number of Arguments")
-		os.Exit(0)
+		log.fatal("Wrong Number of Arguments")
 	}
 
 	file, err = os.Open(fileName)
