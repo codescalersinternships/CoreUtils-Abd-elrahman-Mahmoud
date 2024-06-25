@@ -8,7 +8,7 @@ import (
 func main() {
 	var newLineFlag bool
 
-    flag.BoolVar(&newLineFlag, "n", false, "Number of Lines")
+    flag.BoolVar(&newLineFlag, "n", false, "New Line")
 
 	flag.Parse()
 
