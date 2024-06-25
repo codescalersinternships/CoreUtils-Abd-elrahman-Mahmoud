@@ -2,25 +2,25 @@ package main
 
 import (
 	"flag"
-    "fmt"
+	"fmt"
 	"os"
-	"strconv"
 	"path/filepath"
+	"strconv"
 )
 
 var numberofDirectories int = 1
 var numberofFiles int = 0
 
-func printDirectory(entry string,level int) {
+func printDirectory(entry string, level int) {
 	fmt.Printf("|_%s\n", entry)
-	printDirectoryRecursion(entry, level,"    ")
-	fmt.Printf("%d directories, %d files\n",numberofDirectories, numberofFiles)
+	printDirectoryRecursion(entry, level, "    ")
+	fmt.Printf("%d directories, %d files\n", numberofDirectories, numberofFiles)
 }
 
-func printDirectoryRecursion(entryName string,level int, space string ) {
-    if level == 0 {          //first exit condition
-        return
-    }
+func printDirectoryRecursion(entryName string, level int, space string) {
+	if level == 0 { //first exit condition
+		return
+	}
 
 	c, err := os.ReadDir(entryName)
 	if err != nil {
@@ -29,20 +29,20 @@ func printDirectoryRecursion(entryName string,level int, space string ) {
 	}
 
 	if len(c) == 0 {
-		return				//second exit condition
+		return //second exit condition
 	}
 	level--
 
 	for _, entry := range c {
 		if entry.IsDir() {
-			numberofDirectories ++
-			fmt.Printf("%s|_%s\n", space,entry.Name())
-			printDirectoryRecursion(filepath.Join(entryName, entry.Name()), level, space + "    ")
+			numberofDirectories++
+			fmt.Printf("%s|_%s\n", space, entry.Name())
+			printDirectoryRecursion(filepath.Join(entryName, entry.Name()), level, space+"    ")
 		} else {
 			numberofFiles++
-			fmt.Printf("%s|_%s\n", space,entry.Name())
+			fmt.Printf("%s|_%s\n", space, entry.Name())
 		}
-    }
+	}
 }
 
 func main() {
@@ -51,7 +51,7 @@ func main() {
 	var directoryName string
 	var err error
 
-    flag.BoolVar(&treeLevelFlag, "L", false, "Tree level to stop at")
+	flag.BoolVar(&treeLevelFlag, "L", false, "Tree level to stop at")
 
 	flag.Parse()
 
@@ -60,7 +60,7 @@ func main() {
 		treeLevel, err = strconv.Atoi(args[0])
 		if err != nil {
 			fmt.Println("Error trying to convert string to integer!")
-		    panic(err)
+			panic(err)
 		}
 		directoryName = args[1]
 	} else if len(args) == 1 {
@@ -70,7 +70,6 @@ func main() {
 		log.fatal("Wrong Number of Arguments")
 	}
 
-	printDirectory(directoryName,treeLevel)
-
+	printDirectory(directoryName, treeLevel)
 
 }

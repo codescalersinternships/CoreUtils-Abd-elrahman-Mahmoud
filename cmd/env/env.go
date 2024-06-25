@@ -1,30 +1,12 @@
 package main
 
 import (
-	"flag"
-    "fmt"
+	"fmt"
+	"os"
 )
 
 func main() {
-	var newLineFlag bool
-
-    flag.BoolVar(&newLineFlag, "n", false, "New Line")
-
-	flag.Parse()
-
-	args := flag.Args()
-
-	if len(args) != 0 {
-		for i:= range len(args) {
-			fmt.Printf("%s ",args[i])
-		}
+	for _, e := range os.Environ() {
+		fmt.Println(e)
 	}
-
-	if !newLineFlag {
-		fmt.Printf("\n")
-	}
-
-
-
-
 }

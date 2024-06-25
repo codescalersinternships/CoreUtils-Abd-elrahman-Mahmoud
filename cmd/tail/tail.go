@@ -1,11 +1,11 @@
 package main
 
 import (
-	"flag"
-    "fmt"
-	"strconv"
-	"os"
 	"bufio"
+	"flag"
+	"fmt"
+	"os"
+	"strconv"
 )
 
 func main() {
@@ -16,7 +16,7 @@ func main() {
 	var file *os.File
 	var lines []string
 
-    flag.BoolVar(&numberofLinesFlag, "n", false, "Number of Lines")
+	flag.BoolVar(&numberofLinesFlag, "n", false, "Number of Lines")
 
 	flag.Parse()
 
@@ -25,7 +25,7 @@ func main() {
 		numberofLines, err = strconv.Atoi(args[0])
 		if err != nil {
 			fmt.Println("Error trying to convert string to integer!")
-		    panic(err)
+			panic(err)
 		}
 		fileName = args[1]
 	} else if len(args) == 1 {
@@ -43,7 +43,7 @@ func main() {
 
 	fileScanner := bufio.NewScanner(file)
 	fileScanner.Split(bufio.ScanLines)
- 
+
 	for fileScanner.Scan() {
 		lines = append(lines, fileScanner.Text())
 	}
@@ -51,8 +51,8 @@ func main() {
 	if len(lines) < numberofLines {
 		numberofLines = len(lines)
 	}
-	for i := len(lines) - numberofLines; i < len(lines); i++   {
-		fmt.Printf("%s\n\n",lines[i])
+	for i := len(lines) - numberofLines; i < len(lines); i++ {
+		fmt.Printf("%s\n\n", lines[i])
 	}
 
 	file.Close()

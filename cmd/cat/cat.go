@@ -1,24 +1,24 @@
 package main
 
 import (
-	"flag"
-    "fmt"
-	"os"
 	"bufio"
+	"flag"
+	"fmt"
+	"os"
 )
 
 func main() {
 	var numberLinesFlag bool
 	var err error
 	var file *os.File
-	lineNumber :=1
+	lineNumber := 1
 
-    flag.BoolVar(&numberLinesFlag, "n", false, "Number of Lines")
+	flag.BoolVar(&numberLinesFlag, "n", false, "Number of Lines")
 
 	flag.Parse()
 
 	args := flag.Args()
-	if len(args) == 0{
+	if len(args) == 0 {
 		log.fatal("Wrong Number of Arguments")
 	}
 
@@ -33,12 +33,12 @@ func main() {
 		fileScanner := bufio.NewScanner(file)
 
 		fileScanner.Split(bufio.ScanLines)
-	
+
 		for fileScanner.Scan() {
 			if numberLinesFlag {
-				fmt.Printf("Line Number : %d   ",lineNumber)
+				fmt.Printf("Line Number : %d   ", lineNumber)
 			}
-			fmt.Printf("%s\n\n",fileScanner.Text())
+			fmt.Printf("%s\n\n", fileScanner.Text())
 			lineNumber++
 		}
 

@@ -1,8 +1,8 @@
 package main
 
 import (
+	"fmt"
 	"os"
-    "fmt"
 )
 
 func main() {
@@ -11,8 +11,8 @@ func main() {
 
 	if len(args) != 0 {
 		for {
-			for i:= range len(args) {
-				fmt.Printf("%s ",args[i])
+			for i := range len(args) {
+				fmt.Printf("%s ", args[i])
 			}
 			fmt.Printf("\n")
 		}
