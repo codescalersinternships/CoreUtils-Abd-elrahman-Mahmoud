@@ -14,10 +14,7 @@ func main() {
 	var err error
 	var fileName string
 	var file *os.File
-	var linetoStartPrinting int
-
-	totalNumberofLines := 0 
-	currentLineCount := 0
+	var lines []string
 
     flag.BoolVar(&numberofLinesFlag, "n", false, "Number of Lines")
 
@@ -49,27 +46,14 @@ func main() {
 	fileScanner.Split(bufio.ScanLines)
  
 	for fileScanner.Scan() {
-		totalNumberofLines++
+		lines = append(lines, fileScanner.Text())
 	}
 
-	file.Close()
-
-	file, err = os.Open(fileName)
-	if err != nil {
-		fmt.Println("Error trying to open file!")
-		panic(err)
+	if len(lines) < numberofLines {
+		numberofLines = len(lines)
 	}
-	
-	linetoStartPrinting = totalNumberofLines - numberofLines
-
-	fileScanner = bufio.NewScanner(file)
-	fileScanner.Split(bufio.ScanLines)
-
-	for fileScanner.Scan() {
-		if currentLineCount >= linetoStartPrinting  {
-			fmt.Printf("%s\n\n",fileScanner.Text())
-		}
-		currentLineCount++
+	for i := len(lines) - numberofLines; i < len(lines); i++   {
+		fmt.Printf("%s\n\n",lines[i])
 	}
 
 	file.Close()
