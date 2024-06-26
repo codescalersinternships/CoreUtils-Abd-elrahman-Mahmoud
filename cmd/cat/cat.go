@@ -19,7 +19,7 @@ func main() {
 
 	args := flag.Args()
 	if len(args) == 0 {
-		log.fatal("Wrong Number of Arguments")
+		log.Fatal("Wrong Number of Arguments")
 	}
 
 	for i := range len(args) {
