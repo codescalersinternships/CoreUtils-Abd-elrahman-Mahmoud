@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 )
@@ -55,6 +56,6 @@ func main() {
 		fmt.Printf("%s\n\n", lines[i])
 	}
 
-	file.Close()
+	defer file.Close()
 
 }

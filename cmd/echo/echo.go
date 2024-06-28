@@ -15,13 +15,11 @@ func main() {
 	args := flag.Args()
 
 	if len(args) != 0 {
-		for i := range len(args) {
+		for i := range args {
 			fmt.Printf("%s ", args[i])
+			if newLineFlag {
+				fmt.Printf("\n")
+			}
 		}
 	}
-
-	if !newLineFlag {
-		fmt.Printf("\n")
-	}
-
 }

@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
+	"log"
 	"os"
 )
 
@@ -22,7 +23,7 @@ func main() {
 		log.Fatal("Wrong Number of Arguments")
 	}
 
-	for i := range len(args) {
+	for i := range args {
 
 		file, err = os.Open(args[i])
 		if err != nil {
@@ -42,9 +43,9 @@ func main() {
 			lineNumber++
 		}
 
-		file.Close()
+		defer file.Close()
 	}
 
-	file.Close()
+	defer file.Close()
 
 }

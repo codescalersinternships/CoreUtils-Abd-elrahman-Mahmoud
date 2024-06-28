@@ -1,10 +1,11 @@
 package main
 
 import (
-	"flag"
-    "fmt"
-	"os"
 	"bufio"
+	"flag"
+	"fmt"
+	"log"
+	"os"
 )
 
 func main() {
@@ -19,27 +20,24 @@ func main() {
 	numberofWords := 0
 	numberofCharacters := 0
 
-
-    flag.BoolVar(&numberofLinesFlag, "l", false, "Number of Lines")
+	flag.BoolVar(&numberofLinesFlag, "l", false, "Number of Lines")
 	flag.BoolVar(&numberofWordsFlag, "w", false, "Number of Words")
 	flag.BoolVar(&numberofCharactersFlag, "c", false, "Number of Characters")
-
 
 	flag.Parse()
 
 	if !numberofLinesFlag && !numberofWordsFlag && !numberofCharactersFlag {
 		numberofLinesFlag = true
-		numberofWordsFlag =  true
+		numberofWordsFlag = true
 		numberofCharactersFlag = true
 	}
 
 	args := flag.Args()
-	if len(args) == 0{
+	if len(args) == 0 {
 		log.Fatal("Wrong Number of Arguments")
 	} else {
 		fileName = args[0]
 	}
-
 
 	if numberofLinesFlag {
 		file, err = os.Open(fileName)
@@ -53,9 +51,9 @@ func main() {
 		for fileScanner.Scan() {
 			numberofLines++
 		}
-		fmt.Println("Number of Lines :",numberofLines)
+		fmt.Println("Number of Lines :", numberofLines)
 
-		file.Close()
+		defer file.Close()
 	}
 	if numberofWordsFlag {
 		file, err = os.Open(fileName)
@@ -69,9 +67,9 @@ func main() {
 		for fileScanner.Scan() {
 			numberofWords++
 		}
-		fmt.Println("Number of Words :",numberofWords)
+		fmt.Println("Number of Words :", numberofWords)
 
-		file.Close()
+		defer file.Close()
 	}
 	if numberofCharactersFlag {
 		file, err = os.Open(fileName)
@@ -85,9 +83,9 @@ func main() {
 		for fileScanner.Scan() {
 			numberofCharacters++
 		}
-		fmt.Println("Number of Characters :",numberofCharacters)
+		fmt.Println("Number of Characters :", numberofCharacters)
 
-		file.Close()
+		defer file.Close()
 	}
 
 }

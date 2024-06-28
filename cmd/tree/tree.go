@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -66,6 +67,13 @@ func main() {
 	} else if len(args) == 1 {
 		treeLevel = -1
 		directoryName = args[0]
+	} else if len(args) == 0 {
+		treeLevel = -1
+		directoryName, err = os.Getwd()
+		if err != nil {
+			fmt.Println("Error trying to get current directory!")
+			panic(err)
+		}
 	} else {
 		log.Fatal("Wrong Number of Arguments")
 	}

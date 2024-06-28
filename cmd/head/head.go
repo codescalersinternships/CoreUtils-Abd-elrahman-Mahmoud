@@ -53,6 +53,6 @@ func main() {
 		numberofLines--
 	}
 
-	file.Close()
+	defer file.Close()
 
 }
