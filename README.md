@@ -4,7 +4,7 @@
 
 - Print the first 10 lines of input by default.
 - Add a -n flag to specify the number of lines to print.
-- Default 10 lines
+- Default 10 lines.
 
 ```console
 user@user-VirtualBox:~$ go build head.go
@@ -15,7 +15,7 @@ user@user-VirtualBox:~$ ./head -n 4 fileName
 
 - Print the last 10 lines of input by default.
 - Add a -n flag to specify the number of lines to print.
-- Default 10 lines
+- Default 10 lines.
 
 ```console
 user@user-VirtualBox:~$ go build tail.go
@@ -26,7 +26,7 @@ user@user-VirtualBox:~$ ./tail -n 4 fileName
 
 - Count lines, words, and characters in the input.
 - Add -l, -w, and -c flags to display only lines, words, or characters respectively.
-- Default displays lines, words, and characters
+- Default displays lines, words, and characters.
 
 ```console
 user@user-VirtualBox:~$ go build wc.go
